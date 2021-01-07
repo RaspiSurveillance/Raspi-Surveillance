@@ -1,0 +1,8 @@
+**/.vscode/*
+**/__pycache__/*
+**/logs
+.DS_Store
+/venv
+/sync
+scripts_generated/start_surveillance.sh
+scripts_generated/stop_surveillance.sh

@@ -1,0 +1,69 @@
+{
+    "use_sensors": false,
+    "initial_folder_cleanup": true,
+    "local_sync_folder_name": "<LOCAL_FOLDER>",
+    "sleep": {
+        "main_loop_sec": 1,
+        "check_sensors_sec": 30,
+        "sensors_init_sec": 5,
+        "sensors_warmup_sec": 10,
+        "camera_warmup_sec": 1,
+        "between_images_sec": 0.5,
+        "sync_done_sec": 1,
+        "sender_finished_sec": 0.5,
+        "file_sync_finished_sec": 0.5
+    },
+    "max_wait": {
+        "finish_sender_tasks_sec": 10,
+        "finish_filesyncer_tasks_sec": 20
+    },
+    "pins": {
+        "sensor_pir": 23
+    },
+    "camera": {
+        "resolution_width": 1296,
+        "resolution_height": 972,
+        "rotation_degrees": 0
+    },
+    "image": {
+        "nr_to_take": 2
+    },
+    "video": {
+        "active": true,
+        "seconds": 3
+    },
+    "senders": {
+        "log": {
+            "active": false,
+            "send_messages": false,
+            "send_images": false,
+            "send_videos": false
+        },
+        "mail": {
+            "active": false,
+            "send_messages": false,
+            "send_videos": false,
+            "server": "smtp.gmail.com",
+            "server_port": 465,
+            "address": "<MAIL_ADDRESS>",
+            "password": "<MAIL_PASSWORD>",
+            "interval_messages_send_sec": 60
+        },
+        "dropbox": {
+            "active": false,
+            "sync_images": false,
+            "sync_videos": false,
+            "access_token": "<ACCESS_TOKEN>",
+            "remote_folder_name": "raspi-surveillance"
+        },
+        "telegram": {
+            "active": false,
+            "send_messages": false,
+            "send_images": false,
+            "send_videos": false,
+            "token": "<TELEGRAM_TOKEN>",
+            "chat_id": -1,
+            "interval_messages_send_sec": 30
+        }
+    }
+}
