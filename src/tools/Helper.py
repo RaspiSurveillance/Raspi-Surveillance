@@ -69,62 +69,62 @@ def parse_args(__prog__, settings):
     parser.add_argument('--video_seconds', required=False,
                         help='Number of seconds to take as video', default=settings.get('video')['seconds'])
 
-    parser.add_argument('--sender_log_active', required=False, type=bool,
+    parser.add_argument('--sender_l_active', required=False, type=bool,
                         help='Sender: Log - active', default=settings.get_sender('log', 'active'))
-    parser.add_argument('--sender_log_send_messages', required=False, type=bool,
+    parser.add_argument('--sender_l_send_messages', required=False, type=bool,
                         help='Sender: Log - send_messages', default=settings.get_sender('log', 'send_messages'))
-    parser.add_argument('--sender_log_send_images', required=False, type=bool,
+    parser.add_argument('--sender_l_send_images', required=False, type=bool,
                         help='Sender: Log - send_images', default=settings.get_sender('log', 'send_images'))
-    parser.add_argument('--sender_log_send_videos', required=False, type=bool,
+    parser.add_argument('--sender_l_send_videos', required=False, type=bool,
                         help='Sender: Log - send_videos', default=settings.get_sender('log', 'send_videos'))
-    parser.add_argument('--sender_log_prefix', required=False,
+    parser.add_argument('--sender_l_prefix', required=False,
                         help='Sender: Log - prefix', default=settings.get_sender('log', 'prefix'))
 
-    parser.add_argument('--sender_mail_active', required=False, type=bool,
+    parser.add_argument('--sender_m_active', required=False, type=bool,
                         help='Sender: Mail - active', default=settings.get_sender('mail', 'active'))
-    parser.add_argument('--sender_mail_send_messages', required=False, type=bool,
+    parser.add_argument('--sender_m_send_messages', required=False, type=bool,
                         help='Sender: Mail - send_messages', default=settings.get_sender('mail', 'send_messages'))
-    parser.add_argument('--sender_mail_send_videos', required=False, type=bool,
+    parser.add_argument('--sender_m_send_videos', required=False, type=bool,
                         help='Sender: Mail - send_videos', default=settings.get_sender('mail', 'send_videos'))
-    parser.add_argument('--sender_mail_server', required=False,
+    parser.add_argument('--sender_m_server', required=False,
                         help='Sender: Mail - server', default=settings.get_sender('mail', 'server'))
-    parser.add_argument('--sender_mail_server_port', required=False,
+    parser.add_argument('--sender_m_server_port', required=False,
                         help='Sender: Mail - server_port', default=settings.get_sender('mail', 'server_port'))
-    parser.add_argument('--sender_mail_address', required=False,
+    parser.add_argument('--sender_m_address', required=False,
                         help='Sender: Mail - address', default=settings.get_sender('mail', 'address'))
-    parser.add_argument('--sender_mail_password', required=False,
+    parser.add_argument('--sender_m_password', required=False,
                         help='Sender: Mail - password', default=settings.get_sender('mail', 'password'))
-    parser.add_argument('--sender_mail_interval_messages_send_sec', required=False,
+    parser.add_argument('--sender_m_intv_msg_s', required=False,
                         help='Sender: Mail - interval_messages_send_sec', default=settings.get_sender('mail', 'interval_messages_send_sec'))
-    parser.add_argument('--sender_mail_prefix', required=False,
+    parser.add_argument('--sender_m_prefix', required=False,
                         help='Sender: Mail - prefix', default=settings.get_sender('mail', 'prefix'))
 
-    parser.add_argument('--sender_dropbox_active', required=False, type=bool,
+    parser.add_argument('--sender_d_active', required=False, type=bool,
                         help='Sender: Dropbox - active', default=settings.get_sender('dropbox', 'active'))
-    parser.add_argument('--sender_dropbox_sync_images', required=False, type=bool,
+    parser.add_argument('--sender_d_sync_images', required=False, type=bool,
                         help='Sender: Dropbox - sync_images', default=settings.get_sender('dropbox', 'sync_images'))
-    parser.add_argument('--sender_dropbox_sync_videos', required=False, type=bool,
+    parser.add_argument('--sender_d_sync_videos', required=False, type=bool,
                         help='Sender: Dropbox - sync_videos', default=settings.get_sender('dropbox', 'sync_videos'))
-    parser.add_argument('--sender_dropbox_access_token', required=False,
-                        help='Sender: Dropbox - sender_dropbox_access_token', default=settings.get_sender('dropbox', 'access_token'))
-    parser.add_argument('--sender_dropbox_remote_folder_name', required=False,
+    parser.add_argument('--sender_d_access_token', required=False,
+                        help='Sender: Dropbox - access_token', default=settings.get_sender('dropbox', 'access_token'))
+    parser.add_argument('--sender_d_remote_folder_name', required=False,
                         help='Sender: Dropbox - remote_folder_name', default=settings.get_sender('dropbox', 'remote_folder_name'))
 
-    parser.add_argument('--sender_telegram_active', required=False, type=bool,
+    parser.add_argument('--sender_t_active', required=False, type=bool,
                         help='Sender: Telegram - active', default=settings.get_sender('telegram', 'active'))
-    parser.add_argument('--sender_telegram_send_messages', required=False, type=bool,
+    parser.add_argument('--sender_t_send_messages', required=False, type=bool,
                         help='Sender: Telegram - send_messages', default=settings.get_sender('telegram', 'send_messages'))
-    parser.add_argument('--sender_telegram_send_images', required=False, type=bool,
+    parser.add_argument('--sender_t_send_images', required=False, type=bool,
                         help='Sender: Telegram - send_images', default=settings.get_sender('telegram', 'send_images'))
-    parser.add_argument('--sender_telegram_send_videos', required=False, type=bool,
+    parser.add_argument('--sender_t_send_videos', required=False, type=bool,
                         help='Sender: Telegram - send_videos', default=settings.get_sender('telegram', 'send_videos'))
-    parser.add_argument('--sender_telegram_token', required=False,
+    parser.add_argument('--sender_t_token', required=False,
                         help='Sender: Telegram - token', default=settings.get_sender('telegram', 'token'))
-    parser.add_argument('--sender_telegram_chat_id', required=False,
+    parser.add_argument('--sender_t_chat_id', required=False,
                         help='Sender: Telegram - chat_id', default=settings.get_sender('telegram', 'chat_id'))
-    parser.add_argument('--sender_telegram_interval_messages_send_sec', required=False,
+    parser.add_argument('--sender_t_intv_msg_s', required=False,
                         help='Sender: Telegram - interval_messages_send_sec', default=settings.get_sender('telegram', 'interval_messages_send_sec'))
-    parser.add_argument('--sender_telegram_prefix', required=False,
+    parser.add_argument('--sender_t_prefix', required=False,
                         help='Sender: Telegram - prefix', default=settings.get_sender('telegram', 'prefix'))
     
     args = parser.parse_args()
