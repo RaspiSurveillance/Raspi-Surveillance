@@ -93,3 +93,21 @@ class Settings:
         except KeyError as exception:
             logging.error('Returning default for sender "{}", key "{}": "{}"'.format(sender, key, exception))
             return default
+
+    def set(self, key, key2, value):
+        """Sets a (new) value for a given key
+
+        :param key: The key
+        :param key2: The second key
+        :param value: The value
+        """
+        self._settings_dict[key][key2] = value
+
+    def set_sender(self, sender, key, value):
+        """Sets a (new) value for a given key for the given sender
+
+        :param sender: The sender
+        :param key: The key
+        :param value: The value
+        """
+        self._settings_dict['senders'][sender][key] = value

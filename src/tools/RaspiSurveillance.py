@@ -17,11 +17,12 @@ from tools.GracefulKiller import GracefulKiller
 from sender.SenderRegister import SenderRegister
 from tools.FileSyncer import FileSyncer
 from i18n.I18n import I18n
+from tools.Helper import parse_args
 
 
 class RaspiSurveillance:
 
-    def __init__(self, settings):
+    def __init__(self, __prog__, settings):
         """Initialization
 
         :param settings: The settings
@@ -29,6 +30,10 @@ class RaspiSurveillance:
         logging.info('Initializing surveillance')
 
         self.settings = settings
+
+        # Parse command line arguments
+        self.args = parse_args(__prog__, self.settings)
+        self._init_settings()
 
         self.i18n = I18n()
 
@@ -57,12 +62,51 @@ class RaspiSurveillance:
         # Initialize internally
         self._init()
 
+    def _init_settings(self):
+        # Save given parameters
+        self.settings.set('camera', 'resolution_width', self.args.reswidth)
+        self.settings.set('camera', 'resolution_height', self.args.resheight)
+        self.settings.set('camera', 'rotation_degrees', self.args.rotation_degrees)
+        self.settings.set('image', 'nr_to_take', self.args.image_nr_to_take)
+        self.settings.set('video', 'active', self.args.video_active)
+        self.settings.set('video', 'seconds', self.args.video_seconds)
+
+        self.settings.set_sender('log', 'active', self.args.sender_log_active)
+        self.settings.set_sender('log', 'send_messages', self.args.sender_log_send_messages)
+        self.settings.set_sender('log', 'send_images', self.args.sender_log_send_images)
+        self.settings.set_sender('log', 'send_videos', self.args.sender_log_send_videos)
+        self.settings.set_sender('log', 'prefix', self.args.sender_log_prefix)
+
+        self.settings.set_sender('mail', 'active', self.args.sender_mail_active)
+        self.settings.set_sender('mail', 'send_messages', self.args.sender_mail_send_messages)
+        self.settings.set_sender('mail', 'send_videos', self.args.sender_mail_send_videos)
+        self.settings.set_sender('mail', 'server', self.args.sender_mail_server)
+        self.settings.set_sender('mail', 'server_port', self.args.sender_mail_server_port)
+        self.settings.set_sender('mail', 'address', self.args.sender_mail_address)
+        self.settings.set_sender('mail', 'password', self.args.sender_mail_password)
+        self.settings.set_sender('mail', 'interval_messages_send_sec', self.args.sender_mail_interval_messages_send_sec)
+        self.settings.set_sender('mail', 'prefix', self.args.sender_mail_prefix)
+
+        self.settings.set_sender('dropbox', 'active', self.args.sender_dropbox_active)
+        self.settings.set_sender('dropbox', 'sync_images', self.args.sender_dropbox_sync_images)
+        self.settings.set_sender('dropbox', 'sync_videos', self.args.sender_dropbox_sync_videos)
+        self.settings.set_sender('dropbox', 'access_token', self.args.sender_dropbox_access_token)
+        self.settings.set_sender('dropbox', 'remote_folder_name', self.args.sender_dropbox_remote_folder_name)
+
+        self.settings.set_sender('telegram', 'active', self.args.sender_telegram_active)
+        self.settings.set_sender('telegram', 'send_messages', self.args.sender_telegram_send_messages)
+        self.settings.set_sender('telegram', 'send_images', self.args.sender_telegram_send_images)
+        self.settings.set_sender('telegram', 'send_videos', self.args.sender_telegram_send_videos)
+        self.settings.set_sender('telegram', 'token', self.args.sender_telegram_token)
+        self.settings.set_sender('telegram', 'chat_id', self.args.sender_telegram_chat_id)
+        self.settings.set_sender('telegram', 'interval_messages_send_sec', self.args.sender_telegram_interval_messages_send_sec)
+        self.settings.set_sender('telegram', 'prefix', self.args.sender_telegram_prefix)
+
     def _load_sensors(self):
         """Loads the sensors"""
         logging.info('Loading Sensors')
         if self.settings.get('use_sensors'):
-            _sensors = __import__(
-                'tools.Sensors', globals(), locals(), ['Sensors'], 0)
+            _sensors = __import__('tools.Sensors', globals(), locals(), ['Sensors'], 0)
             self.sensors = _sensors.Sensors(self.settings,
                                             cb_motion_detected=self._cb_motion_detected,
                                             cb_motion_ended=self._cb_motion_ended)

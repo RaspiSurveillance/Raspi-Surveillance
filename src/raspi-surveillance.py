@@ -25,5 +25,5 @@ if __name__ == "__main__":
 
     logging.info(get_ascii_art_banner())
 
-    raspi_surveillance = RaspiSurveillance(settings)
+    raspi_surveillance = RaspiSurveillance(__prog__, settings)
     raspi_surveillance.run()
