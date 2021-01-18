@@ -1,0 +1,8 @@
+{
+    "sender.started.subject": "RaspiSurveillance started",
+    "sender.started.message": "RaspiSurveillance started",
+    "sender.stopped.subject": "RaspiSurveillance stopped",
+    "sender.stopped.message": "RaspiSurveillance stopped",
+    "sensors.motion.detected_timestamp.subject": "RaspiSurveillance - Alert",
+    "sensors.motion.detected_timestamp.message": "Motion detected on {:%Y-%m-%d %H:%M:%S}."
+}

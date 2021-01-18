@@ -136,12 +136,14 @@ class MailBot(Bot):
 
         self.running_threads = self.running_threads + 1
 
+        _subject = '{}{}'.format(self.settings.get_sender('mail', 'prefix'), subject)
+        _msg = '{}{}'.format(self.settings.get_sender('mail', 'prefix'), msg)
         m_thread = MailSenderThread(mail_server=self.bot,
                                     mail_address=self.mail_address,
                                     str_from=self.mail_address,
-                                    str_subject=subject,
+                                    str_subject=_subject,
                                     str_to=self.mail_address,
-                                    str_msg=msg,
+                                    str_msg=_msg,
                                     callbacks = [self._cb_internal])
 
         m_thread.start()
@@ -185,6 +187,7 @@ class MailSenderThread(threading.Thread):
             logging.info('Sending email to email address "{}"'.format(self.mail_address))
 
             _msg = 'From:{}\nSubject:{}\nTo:{}\n\n{}'.format(self.str_from, self.str_subject, self.str_to, self.str_msg)
+            logging.debug('Sending message with subject "{}": "{}"'.format(self.str_subject, self.str_msg))
             self.mail_server.sendmail(self.mail_address, self.mail_address, _msg)
             success = True
         except Exception as exc:

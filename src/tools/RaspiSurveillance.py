@@ -16,7 +16,7 @@ import logging
 from tools.GracefulKiller import GracefulKiller
 from sender.SenderRegister import SenderRegister
 from tools.FileSyncer import FileSyncer
-from i18n.Translations import translate
+from i18n.I18n import I18n
 
 
 class RaspiSurveillance:
@@ -29,6 +29,8 @@ class RaspiSurveillance:
         logging.info('Initializing surveillance')
 
         self.settings = settings
+
+        self.i18n = I18n()
 
         self.running = False
         self.last_mail_sent_time = None
@@ -133,8 +135,8 @@ class RaspiSurveillance:
         # Send start message
         logging.debug('Sending start message')
         self._send_msg_to_senders(
-            translate('sender.started.message'),
-            subject=translate('sender.started.subject'),
+            self.i18n.get('sender.started.message'),
+            subject=self.i18n.get('sender.started.subject'),
             force_send=True)
 
         if not self.file_syncer.init():
@@ -188,8 +190,8 @@ class RaspiSurveillance:
         # Send stop message
         logging.debug('Sending stop message')
         self._send_msg_to_senders(
-            translate('sender.stopped.message'),
-            subject=translate('sender.stopped.subject'),
+            self.i18n.get('sender.stopped.message'),
+            subject=self.i18n.get('sender.stopped.subject'),
             force_send=True)
 
         self.file_syncer.cleanup()
@@ -264,10 +266,8 @@ class RaspiSurveillance:
 
         # Send a notification message
         logging.debug('Sending motion detected message')
-        msg = translate('sensors.motion.detected_timestamp.message').format(
-            datetime.datetime.now())
-        self._send_msg_to_senders(msg, subject=translate(
-            'sensors.motion.detected_timestamp.subject'))
+        msg = self.i18n.get('sensors.motion.detected_timestamp.message').format(datetime.datetime.now())
+        self._send_msg_to_senders(msg, subject=self.i18n.get('sensors.motion.detected_timestamp.subject'))
 
     def _cb_motion_ended(self):
         """Callback on motion ended"""

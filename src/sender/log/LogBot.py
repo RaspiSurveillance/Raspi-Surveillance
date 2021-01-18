@@ -102,9 +102,11 @@ class LogBot(Bot):
             logging.error('Not initialized')
             return
 
+        _subject = '{}{}'.format(self.settings.get_sender('log', 'prefix'), subject)
+        _msg = '{}{}'.format(self.settings.get_sender('log', 'prefix'), msg)
         logging.info('Message received:')
-        logging.info('>>> Subject: {}'.format(subject))
-        logging.info('>>> Message: {}'.format(msg))
+        logging.info('>>> Subject: {}'.format(_subject))
+        logging.info('>>> Message: {}'.format(_msg))
         return True
 
     # @abstractmethod override

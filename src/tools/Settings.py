@@ -41,7 +41,7 @@ class Settings:
 
         self._settings_dict = {}
 
-        ### Currently not in the settings file ###
+        ### Not in the settings file ###
 
         self.log_to_file = True
         self.log_level = logging.INFO
@@ -73,7 +73,7 @@ class Settings:
     def get(self, key, default=''):
         """Returns the value for the given key or - if not found - a default value
 
-        :param key: The key to be translated
+        :param key: The key
         :param default: The default if no value could be found for the key
         """
         try:
@@ -85,7 +85,7 @@ class Settings:
     def get_sender(self, sender, key, default=''):
         """Returns the value for the given sender for the given key or - if not found - a default value
 
-        :param key: The key to be translated
+        :param key: The key
         :param default: The default if no value could be found for the key
         """
         try:

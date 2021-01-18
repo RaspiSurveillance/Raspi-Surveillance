@@ -143,9 +143,10 @@ class TelegramBot(Bot):
             return False
 
         try:
+            _msg = '{}{}'.format(self.settings.get_sender('telegram', 'prefix'), msg)
             logging.debug('Sending message {}@{}: "{}"'.format(
-                self.bot_info['username'], self.chat_id, msg))
-            self.bot.send_message(chat_id=self.chat_id, text=msg)
+                self.bot_info['username'], self.chat_id, _msg))
+            self.bot.send_message(chat_id=self.chat_id, text=_msg)
             return True
         except Exception as e:
             logging.error('Failed to send message: "{}"'.format(e))

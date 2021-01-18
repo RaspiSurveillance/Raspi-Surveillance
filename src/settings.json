@@ -37,7 +37,8 @@
             "active": false,
             "send_messages": false,
             "send_images": false,
-            "send_videos": false
+            "send_videos": false,
+            "prefix": "[RS] "
         },
         "mail": {
             "active": false,
@@ -47,7 +48,8 @@
             "server_port": 465,
             "address": "<MAIL_ADDRESS>",
             "password": "<MAIL_PASSWORD>",
-            "interval_messages_send_sec": 60
+            "interval_messages_send_sec": 60,
+            "prefix": "[RS] "
         },
         "dropbox": {
             "active": false,
@@ -63,7 +65,8 @@
             "send_videos": false,
             "token": "<TELEGRAM_TOKEN>",
             "chat_id": -1,
-            "interval_messages_send_sec": 30
+            "interval_messages_send_sec": 30,
+            "prefix": "[RS] "
         }
     }
 }
